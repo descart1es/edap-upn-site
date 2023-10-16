@@ -84,7 +84,7 @@ header nav .nav-list .list a:hover{
     text-align: center;
     margin-top: 12px;
     border: none;
-    margin-left: 20px;
+    
 }
 .btn-register i{
     padding: 10px ;
@@ -253,7 +253,7 @@ h1{
 
 @media(max-width: 1024px){
     header{
-        background-color: #fdfafa;
+        background-color: #ffff;
         
     }
     .bar{
@@ -305,7 +305,7 @@ h1{
 
 @media (max-width: 990px){
     header{
-        background-color: #fdfafa;
+        background-color: #ffff;
         
     }
     .bar{
@@ -337,7 +337,7 @@ h1{
 }
 @media(max-width: 835px){
     header{
-        background-color: #fbf6f6;
+        background-color: #ffff;
         
     }
     header nav .nav-list .list a{
@@ -519,7 +519,7 @@ h1{
     }
 @media (max-width: 575px){
     header{
-        background-color: #f7f3f3;
+        background-color: #fff;
         
     }
     .bar{
@@ -539,6 +539,10 @@ h1{
        margin-left: 10px;
    
     }
+    header nav .nav-list .list a{
+            font-weight: bold;
+    }
+    
 
     
     
