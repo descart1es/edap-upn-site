@@ -1,0 +1,80 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: "Poppins", sans-serif;
+
+}
+section .wrapper{
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 35px;
+  min-height: 100vh;
+  background: #343F4F;
+ 
+}
+section .wrapper .carousel{
+  white-space: nowrap; 
+  overflow: hidden;
+  font-size: 0px;
+  cursor: pointer;
+  scroll-behavior: smooth;
+
+}
+.carousel .dragging{
+  cursor: grab;
+  scroll-behavior: auto;
+}
+.carousel .dragging img{
+    pointer-events: none;
+}
+.carousel img{
+  height: 340px;
+  object-fit: cover;
+  margin-left: 14px;
+  width: calc(100% / 3);
+
+}
+.wrapper i{
+  top: 50%;
+  background-color: #880606;
+  height: 46px;
+  width: 45px;
+  font-size: 1.2rem;
+  line-height: 46px;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  transform: translateY(-50%);
+}
+.wrapper{
+  max-width: 1200px;
+  position: relative;
+
+}
+.wrapper i:first-child{
+  left: -23px;
+  display: none;
+
+}
+.wrapper i:last-child{
+  right: -23px;
+
+}
+.carousel img:first-child{
+  margin-left: 0px;
+}
+@media screen and (max-width: 900px) {
+  .carousel img{
+    width: calc(100% / 2);
+  }
+  
+}
+@media screen and (max-width: 550px) {
+  .carousel img{
+    width: 100%;
+  }
+  
+}

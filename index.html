@@ -2,10 +2,784 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/vendor/swiper/swiper-bundle.min.css">
+   <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />-->
+    <!--<link rel="stylesheet" href="css/vendor/font-awesome/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="css/vendor/font-awesome/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    
+    <link rel="stylesheet" href="css/login.css">
+    
+
+    <link rel="stylesheet" href="font-awesome/fonts/bootstrap-icons.woff2">
+    <title>Mon site edap</title>
 </head>
 <body>
     
+     <header>
+         <div class="container">
+            <div class="row">
+                <!--<div class="icon" id="navToggle">
+               <div class="navIcon" id="hamburger"> <i class=" fa fa-bars fa-2x" ></i></div>
+                <div  class="navIcon hidden"><i  class="fa fa-times fa-2x" aria-hidden="true" ></i></div>
+                </div>-->
+                <div class="col-md-3 col-xs-12">
+                    <div class="logo"><img src="image/logo.jpg" alt=""></div>
+                </div> 
+                
+                <nav class="col-md-9 col-xs-12" >
+                   
+                      <div class="nav-list">
+                        <ul class="nav-list" id="open">
+                            <li class="list" id="active"><a href="#Acceuil">Acceuil</a></li>
+                            <li class="list"><a href="#Apropos">A propos</a></li>
+                            <li class="list"><a href="#option">Sections</a></li>
+                            <li class="list"><a href="#gallery">Gallery</a></li>
+                            <li class="list"><a href="#contact">contact</a></li>
+                            
+                            <a href="login.html"><button class="btn-register" style="position: left;"> <i class="fas fa-user" id="login-btn"></i>login</button></a>
+                        </ul>
+                        
+    
+                            <button  id="btn-register"  data-bs-toggle="modal" data-bs-target="#modaladd"></i>s'inscrire</button>
+                       
+                       <!--<a href="register.html"><button style="position: left;" id="btn-register">s'inscrire</button></a>-->
+                    </div>
+                    
+
+                </nav>
+               <!--- <div class="icons">
+                            
+                    <i class="fas fa-user" id="login-btn"></i>
+                </div>
+            -->
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </div>
+            </div>
+         </div>
+     </header>
+     <!---end of header-->
+
+    <!--- DEBUT MODAL-->
+    
+    <div class="modal fade" id="modaladd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Inscrivez-vous à l'edap pour avoir une bonne éducation</h1><br>
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="api/create.php" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Nom </label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">Post-nom</label>
+                            <input type="email" class="form-control" name="email" id="email"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">Prenom</label>
+                            <input type="email" class="form-control" name="email" id="email"/>
+                        </div>
+                        <label for="email" class="col-form-label">sexe</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="homme" value="Homme">
+                            <label class="form-check-label" for="homme">
+                                Homme
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="femme" value="Femme">
+                            <label class="form-check-label" for="femme">
+                                Femme
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">classe</label>
+                            <input type="email" class="form-control" name="email" id="email"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="col-form-label">Section/Option</label>
+                            <select class="form-control" id="country" name="country">
+                                <option>choisir la section</option>
+                                <option value="">Primaire</option>
+                                <option value="">Commercial</option>
+                                <option value="">Hotellerie</option>
+                                <option value="">Scientifique</option>
+                                <option value="">Electricité</option>
+                                <option value="">Litteraire</option>
+                                <option value="">Nutrition</option>
+                                
+                            </select>
+                            </div>
+
+                        <div class="mb-3">
+                            <label for="country" class="col-form-label">Pays</label>
+                            <select class="form-control" id="country" name="country">
+                                <option>country</option>
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Aland Islands">Îles Åland</option>
+                                <option value="Albania">Albanie</option>
+                                <option value="Algeria">Algérie</option>
+                                <option value="American Samoa">Samoa américaines</option>
+                                <option value="Andorra">Andorre</option>
+                                <option value="Angola">Angola</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Antarctica">Antarctique</option>
+                                <option value="Antigua and Barbuda">Antigua-et-Barbuda</option>
+                                <option value="Argentina">Argentine</option>
+                                <option value="Armenia">Arménie</option>
+                                <option value="Aruba">Aruba</option>
+                                <option value="Australia">Australie</option>
+                                <option value="Austria">Autriche</option>
+                                <option value="Azerbaijan">Azerbaïdjan</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Bahrain">Bahreïn</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="Barbados">Barbade</option>
+                                <option value="Belarus">Biélorussie</option>
+                                <option value="Belgium">Belgique</option>
+                                <option value="Belize">Belize</option>
+                                <option value="Benin">Bénin</option>
+                                <option value="Bermuda">Bermudes</option>
+                                <option value="Bhutan">Bhoutan</option>
+                                <option value="Bolivia">Bolivie</option>
+                                <option value="Bonaire, Sint Eustatius and Saba">Pays-Bas caribéens</option>
+                                <option value="Bosnia and Herzegovina">Bosnie-Herzégovine</option>
+                                <option value="Botswana">Botswana</option>
+                                <option value="Bouvet Island">Île Bouvet</option>
+                                <option value="Brazil">Brésil</option>
+                                <option value="British Indian Ocean Territory">Territoire britannique de l’océan Indien</option>
+                                <option value="Brunei Darussalam">Brunei</option>
+                                <option value="Bulgaria">Bulgarie</option>
+                                <option value="Burkina Faso">Burkina Faso</option>
+                                <option value="Burundi">Burundi</option>
+                                <option value="Cambodia">Cambodge</option>
+                                <option value="Cameroon">Cameroun</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Cape Verde">Cap-Vert</option>
+                                <option value="Cayman Islands">Îles Caïmans</option>
+                                <option value="Central African Republic">République centrafricaine</option>
+                                <option value="Chad">Tchad</option>
+                                <option value="Chile">Chili</option>
+                                <option value="China">Chine</option>
+                                <option value="Christmas Island">Île Christmas</option>
+                                <option value="Cocos (Keeling) Islands">Îles Cocos</option>
+                                <option value="Colombia">Colombie</option>
+                                <option value="Comoros">Comores</option>
+                                <option value="Congo">Congo-Brazzaville</option>
+                                <option value="Congo, Democratic Republic of the Congo">Congo-Kinshasa</option>
+                                <option value="Cook Islands">Îles Cook</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="Cote D'Ivoire">Côte d’Ivoire</option>
+                                <option value="Croatia">Croatie</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Curacao">Curaçao</option>
+                                <option value="Cyprus">Chypre</option>
+                                <option value="Czech Republic">Tchéquie</option>
+                                <option value="Denmark">Danemark</option>
+                                <option value="Djibouti">Djibouti</option>
+                                <option value="Dominica">Dominique</option>
+                                <option value="Dominican Republic">République dominicaine</option>
+                                <option value="Ecuador">Équateur</option>
+                                <option value="Egypt">Égypte</option>
+                                <option value="El Salvador">Salvador</option>
+                                <option value="Equatorial Guinea">Guinée équatoriale</option>
+                                <option value="Eritrea">Érythrée</option>
+                                <option value="Estonia">Estonie</option>
+                                <option value="Ethiopia">Éthiopie</option>
+                                <option value="Falkland Islands (Malvinas)">Îles Malouines (Îles Falkland)</option>
+                                <option value="Faroe Islands">Îles Féroé</option>
+                                <option value="Fiji">Fidji</option>
+                                <option value="Finland">Finlande</option>
+                                <option value="France">France</option>
+                                <option value="French Guiana">Guyane française</option>
+                                <option value="French Polynesia">Polynésie française</option>
+                                <option value="French Southern Territories">Terres australes françaises</option>
+                                <option value="Gabon">Gabon</option>
+                                <option value="Gambia">Gambie</option>
+                                <option value="Georgia">Géorgie</option>
+                                <option value="Germany">Allemagne</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Gibraltar">Gibraltar</option>
+                                <option value="Greece">Grèce</option>
+                                <option value="Greenland">Groenland</option>
+                                <option value="Grenada">Grenade</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Guam">Guam</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Guernsey">Guernesey</option>
+                                <option value="Guinea">Guinée</option>
+                                <option value="Guinea-Bissau">Guinée-Bissau</option>
+                                <option value="Guyana">Guyana</option>
+                                <option value="Haiti">Haïti</option>
+                                <option value="Heard Island and Mcdonald Islands">Îles Heard-et-MacDonald</option>
+                                <option value="Holy See (Vatican City State)">État de la Cité du Vatican</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Hungary">Hongrie</option>
+                                <option value="Iceland">Islande</option>
+                                <option value="India">Inde</option>
+                                <option value="Indonesia">Indonésie</option>
+                                <option value="Iran, Islamic Republic of">Iran</option>
+                                <option value="Iraq">Irak</option>
+                                <option value="Ireland">Irlande</option>
+                                <option value="Isle of Man">Île de Man</option>
+                                <option value="Israel">Israël</option>
+                                <option value="Italy">Italie</option>
+                                <option value="Jamaica">Jamaïque</option>
+                                <option value="Japan">Japon</option>
+                                <option value="Jersey">Jersey</option>
+                                <option value="Jordan">Jordanie</option>
+                                <option value="Kazakhstan">Kazakhstan</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Kiribati">Kiribati</option>
+                                <option value="Korea, Democratic People's Republic of">Corée du Nord</option>
+                                <option value="Korea, Republic of">Corée du Sud</option>
+                                <option value="Kosovo">Kosovo</option>
+                                <option value="Kuwait">Koweït</option>
+                                <option value="Kyrgyzstan">Kirghizstan</option>
+                                <option value="Lao People's Democratic Republic">Laos</option>
+                                <option value="Latvia">Lettonie</option>
+                                <option value="Lebanon">Liban</option>
+                                <option value="Lesotho">Lesotho</option>
+                                <option value="Liberia">Liberia</option>
+                                <option value="Libyan Arab Jamahiriya">Libye</option>
+                                <option value="Liechtenstein">Liechtenstein</option>
+                                <option value="Lithuania">Lituanie</option>
+                                <option value="Luxembourg">Luxembourg</option>
+                                <option value="Macao">Macao</option>
+                                <option value="Macedonia, the Former Yugoslav Republic of">Macédoine du Nord</option>
+                                <option value="Madagascar">Madagascar</option>
+                                <option value="Malawi">Malawi</option>
+                                <option value="Malaysia">Malaisie</option>
+                                <option value="Maldives">Maldives</option>
+                                <option value="Mali">Mali</option>
+                                <option value="Malta">Malte</option>
+                                <option value="Marshall Islands">Îles Marshall</option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Mauritania">Mauritanie</option>
+                                <option value="Mauritius">Maurice</option>
+                                <option value="Mayotte">Mayotte</option>
+                                <option value="Mexico">Mexique</option>
+                                <option value="Micronesia, Federated States of">Micronésie</option>
+                                <option value="Moldova, Republic of">Moldavie</option>
+                                <option value="Monaco">Monaco</option>
+                                <option value="Mongolia">Mongolie</option>
+                                <option value="Montenegro">Monténégro</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Morocco">Maroc</option>
+                                <option value="Mozambique">Mozambique</option>
+                                <option value="Myanmar">Myanmar (Birmanie)</option>
+                                <option value="Namibia">Namibie</option>
+                                <option value="Nauru">Nauru</option>
+                                <option value="Nepal">Népal</option>
+                                <option value="Netherlands">Pays-Bas</option>
+                                <option value="Netherlands Antilles">Curaçao</option>
+                                <option value="New Caledonia">Nouvelle-Calédonie</option>
+                                <option value="New Zealand">Nouvelle-Zélande</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="Niue">Niue</option>
+                                <option value="Norfolk Island">Île Norfolk</option>
+                                <option value="Northern Mariana Islands">Îles Mariannes du Nord</option>
+                                <option value="Norway">Norvège</option>
+                                <option value="Oman">Oman</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Palau">Palaos</option>
+                                <option value="Palestinian Territory, Occupied">Palestine</option>
+                                <option value="Panama">Panama</option>
+                                <option value="Papua New Guinea">Papouasie-Nouvelle-Guinée</option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Peru">Pérou</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Pitcairn">Îles Pitcairn</option>
+                                <option value="Poland">Pologne</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Puerto Rico">Porto Rico</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="Reunion">La Réunion</option>
+                                <option value="Romania">Roumanie</option>
+                                <option value="Russian Federation">Russie</option>
+                                <option value="Rwanda">Rwanda</option>
+                                <option value="Saint Barthelemy">Saint-Barthélemy</option>
+                                <option value="Saint Helena">Sainte-Hélène</option>
+                                <option value="Saint Kitts and Nevis">Saint-Christophe-et-Niévès</option>
+                                <option value="Saint Lucia">Sainte-Lucie</option>
+                                <option value="Saint Martin">Saint-Martin</option>
+                                <option value="Saint Pierre and Miquelon">Saint-Pierre-et-Miquelon</option>
+                                <option value="Saint Vincent and the Grenadines">Saint-Vincent-et-les Grenadines</option>
+                                <option value="Samoa">Samoa</option>
+                                <option value="San Marino">Saint-Marin</option>
+                                <option value="Sao Tome and Principe">Sao Tomé-et-Principe</option>
+                                <option value="Saudi Arabia">Arabie saoudite</option>
+                                <option value="Senegal">Sénégal</option>
+                                <option value="Serbia">Serbie</option>
+                                <option value="Serbia and Montenegro">Serbie</option>
+                                <option value="Seychelles">Seychelles</option>
+                                <option value="Sierra Leone">Sierra Leone</option>
+                                <option value="Singapore">Singapour</option>
+                                <option value="Sint Maarten">Saint-Martin (partie néerlandaise)</option>
+                                <option value="Slovakia">Slovaquie</option>
+                                <option value="Slovenia">Slovénie</option>
+                                <option value="Solomon Islands">Îles Salomon</option>
+                                <option value="Somalia">Somalie</option>
+                                <option value="South Africa">Afrique du Sud</option>
+                                <option value="South Georgia and the South Sandwich Islands">Géorgie du Sud-et-les Îles Sandwich du Sud</option>
+                                <option value="South Sudan">Soudan du Sud</option>
+                                <option value="Spain">Espagne</option>
+                                <option value="Sri Lanka">Sri Lanka</option>
+                                <option value="Sudan">Soudan</option>
+                                <option value="Suriname">Suriname</option>
+                                <option value="Svalbard and Jan Mayen">Svalbard et Jan Mayen</option>
+                                <option value="Swaziland">Eswatini</option>
+                                <option value="Sweden">Suède</option>
+                                <option value="Switzerland">Suisse</option>
+                                <option value="Syrian Arab Republic">Syrie</option>
+                                <option value="Taiwan, Province of China">Taïwan</option>
+                                <option value="Tajikistan">Tadjikistan</option>
+                                <option value="Tanzania, United Republic of">Tanzanie</option>
+                                <option value="Thailand">Thaïlande</option>
+                                <option value="Timor-Leste">Timor oriental</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Tokelau">Tokelau</option>
+                                <option value="Tonga">Tonga</option>
+                                <option value="Trinidad and Tobago">Trinité-et-Tobago</option>
+                                <option value="Tunisia">Tunisie</option>
+                                <option value="Turkey">Turquie</option>
+                                <option value="Turkmenistan">Turkménistan</option>
+                                <option value="Turks and Caicos Islands">Îles Turques-et-Caïques</option>
+                                <option value="Tuvalu">Tuvalu</option>
+                                <option value="Uganda">Ouganda</option>
+                                <option value="Ukraine">Ukraine</option>
+                                <option value="United Arab Emirates">Émirats arabes unis</option>
+                                <option value="United Kingdom">Royaume-Uni</option>
+                                <option value="United States">États-Unis</option>
+                                <option value="United States Minor Outlying Islands">Îles mineures éloignées des États-Unis</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Uzbekistan">Ouzbékistan</option>
+                                <option value="Vanuatu">Vanuatu</option>
+                                <option value="Venezuela">Venezuela</option>
+                                <option value="Viet Nam">Viêt Nam</option>
+                                <option value="Virgin Islands, British">Îles Vierges britanniques</option>
+                                <option value="Virgin Islands, U.s.">Îles Vierges des États-Unis</option>
+                                <option value="Wallis and Futuna">Wallis-et-Futuna</option>
+                                <option value="Western Sahara">Sahara occidental</option>
+                                <option value="Yemen">Yémen</option>
+                                <option value="Zambia">Zambie</option>
+                                <option value="Zimbabwe">Zimbabwe</option>
+                            </select>
+                        </div>
+                        
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">s'inscrire</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+   
+
+     <section class="section-home text-center" id="Acceuil">
+        <div class="overlay">
+            <div class="container">
+             <div class="home-content">
+                <h3 class="home-title">Bienvenu(e)s à l'Edap</h3>
+                <p class="home-desc">
+                   Ce site vise à donner les Informations et de communiquer de manière permanente aux élèves de cette école, mais aussi il donne la possibilité à tout ceux qui veulent s'inscrire à distance à l'école d'application de l'UPN de reserver leurs place à moindre coup sans se deplacer. 
+                </p>
+                <a href=""><button class="btn button">S'inscrire</button></a>
+                <a href="about.html"><button class="bttn button">Apropos</button></a>
+             </div>
+          </div> 
+        </div>
+     </section>
+     
+
+      <!--- Fin de la partie Acceuil/ landing page-->
+    <section class="about" id="Apropos">
+         <div class="container">
+              <div class="section-header text-center ">
+                <h2 class="section-title">Apropos de nous</h2>
+                <div class="line"><span></span></div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, provident. Perspiciatis consequatur, reprehenderit eaque soluta vel et voluptate nostrum dignissimos beatae ipsam in fugiat iure sit officia laboriosam ipsa labore</p>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                   <div class="about-info">
+                     <h3>Breve Historique de <span> l'édap</span> Upn</h3>
+                     <div class="abut-info-desc">
+                         <p>
+                            L’Ecole d’Application de l’Université Pédagogique Nationale a été 
+                            créée par les parents de la province du kongo central en 1961, sous l’appellation 
+                            de l’Athénée du cycle d’orientation Pumbu. Puis devenue plus tard Athénée du 
+                            Kongo central. Il n’était organisé que l’enseignement secondaire.
+                                                    </p>
+                            <p>
+                                Par manque de bâtiments, l’école a fonctionné pendant quelques 
+                                années dans la résidence d’un colon belge au croisement des avenues Bobozo et 
+                                route de Matadi.
+
+                            </p>
+                       <a href="about.html"><button class="about-info-btn"> Lire plus</button></a>
+                     </div>
+                   </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-img">
+                        <img src="image/image edap.jpg" alt="">
+                    </div>
+                </div>
+          </div>
+         </div>
+
+     
+    </section>
+   <!--- Fin de la partie A propos-->
+    <section class="section options" id="option">
+        <div class="container">
+              <div class="section-header text-center ">
+                <h2 class="section-title">Nos Sections</h2>
+                <div class="line"><span></span></div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, provident. Perspiciatis consequatur, reprehenderit eaque soluta vel et voluptate nostrum dignissimos beatae ipsam in fugiat iure sit officia laboriosam ipsa labore</p>
+              </div>
+
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="serv">
+                        <!--i class="icon fa fa-camra fa-lg"--></i>
+                        <h3 class="serv-title">Commercial</h3>
+                        <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="serv">
+                        <!--i class="icon fa fa-camra fa-lg"--></i>
+                        <h3 class="serv-title">Hotellerie</h3>
+                        <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="serv">
+                        <!--i class="icon fa fa-camra fa-lg"--></i>
+                        <h3 class="serv-title">Nutrition</h3>
+                        <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
+                    </div>
+                </div>
+
+
+            </div>
+        
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="serv">
+                        <!--i class="icon fa fa-camra fa-lg"--></i>
+                        <h3 class="serv-title">Scientifique</h3>
+                        <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="serv">
+                        <!--i class="icon fa fa-camra fa-lg"--></i>
+                        <h3 class="serv-title">Litteraire</h3>
+                        <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="serv">
+                        <i class="icon far fas-lightbulb fa-lg" style="font-size: 36px;"></i>
+                        <h3 class="serv-title">Electricité Génerale</h3>
+                        <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
+                    </div>
+                </div>
+
+
+            </div>
+            <a href="sect.html"><button class="options-btn"> Lire plus</button></a>
+        </div>
+        
+    </section>
+    
+     
+  <!--- Fin de la partie sections/Options-->
+
+ --
+
+
+
+
+
+   <div class="section-gallery" id="gallery">
+   <div class="container">
+    <div class="section-header text-center ">
+        <h2 class="section-title">Nos photos</h2>
+        <div class="line"><span></span></div>
+        <p>Apreciez l'environnement de l'école edap	Upn</p>
+      </div>
+      
+        
+        <div class="gallery">
+            <a href="image/edap1.jpeg" data-lightbox="mygallery"><img src="image/edap1.jpeg" alt="cliquez pour bien voir l'image"></a>
+            <a href="image/edap2.jpg" data-lightbox="mygallery"><img src="image/edap2.jpg" alt=""></a>
+            <a href="image/edap3.jpg" data-lightbox="mygallery"><img src="image/edap3.jpg" alt=""></a><br><br>
+            <a href="image/edap2.jpg" data-lightbox="mygallery"><img src="image/edap1.jpeg" alt=""></a>
+            <a href="image/edapLogo.jpeg" data-lightbox="mygallery"><img src="image/edap.jpg" alt=""></a>
+            <a href="image/edap.jpg" data-lightbox="mygallery"><img src="image/edap.jpg" alt=""></a><br><br>
+            
+       
+    </div>
+
+          
+    
+</div>
+</div>
+
+
+
+<!--- Fin de la partie gallery-->
+
+<!--debut-- de la partie témoignages--->
+<!-- --->
+    <div class="container">
+    <section class="review" id="review">
+        
+            <div class="section-header text-center ">
+                <h2 class="section-title">Témoignages</h2>
+                <div class="line"><span></span></div>
+                <p>Lorem ipsum dolor sit amet consectetur vel et voluptate nostrum dignissimos beatae ipsam in fugiat iure sit officia laboriosam ipsa labore</p>
+            </div>
+            
+            
+                <!-----FIRST TESTIMONY-->
+                <div class="container">
+        <div class="swiper-container review-slider">
+            <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                            <div class="box">
+                                <img src="image/fille1.jpeg" alt="">
+                                <h3>David M</h3>
+                                <p>J'ai commencé depuis l'école primaire jusqu'aux humanités et je ne regrette rien... L'edap upn , c'est mon école!!</p>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <img src="image/fille1.jpeg" alt="">
+                                <h3>Benny b</h3>
+                                <p>Une des meilleures écoles de la place</p><br><br>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="swiper-slide">
+                            <div class="box">
+                                <img src="image/fille1.jpeg" alt="">
+                                <h3>Mariam N</h3>
+                                <p>Si aujourd'huit, mes soeurs, mes frères et moi avons des bonnes bases c'est grâce à cette école</p>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+            
+                        
+                    </div>
+        </div>      
+    </div>
+
+    
+ </section>
+</div>
+<!--fin de la partie témoignages--->
+ 
+    <section id="contact" class="bg-white" >
+        <div class="container">
+            <div class="section-header text-center ">
+                <h2 class="section-title">Contact</h2>
+                <div class="line"><span></span></div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, provident. Perspiciatis consequatur, reprehenderit eaque soluta vel et voluptate nostrum dignissimos beatae ipsam in fugiat iure sit officia laboriosam ipsa labore</p>
+              </div>
+
+            <div class="message row m-0-auto">
+                
+                <div class="contact col-md-6">
+                    <h5 class="m-0-auto"> Message</h5>
+                    <form>
+                        <div class="form-group mt-20">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre nom">
+                        </div>
+                        <div class="form-group mt-20">
+                            <input type="tel" class="form-control" name="phone" placeholder="Telephone">
+                        </div>
+                        
+                        <div class="form-group mt-20">
+                            <!--<input name="" id="" cols="30" rows="10" class="text form-control" placeholder="" >-->
+                            <textarea class="text form-control"  name="" id="" cols="30" rows="10" placeholder="votre message"></textarea>
+                        </div>
+                        <button type="submit" class=" btn-block">Envoyer</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div > 
+        <div  id="footer" class=" footer  container-fluid  text-white mt-5 py-5 px-sm-3 px-md-5">
+            
+            <div class="container">
+            <div class="row pt-5 ">
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0" style="font-size: 40px; line-height: 40px;">
+                        <i class="flaticon-043-teddy-bear"></i>
+                        <h3>Edap Upn</h3>
+                    </a><br>
+                    <p>Edap est l'ecole d'application de l'Université Pédagogique Nationale qui donne une formation de qualité à nos enfants.</p>
+                    <div class="d-flex justify-content-start mt-4">
+                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h3>Notre adresse</h3><br>
+                    <div class="d-flex">
+                        <h4 class="fa fa-map-marker-alt text-primary"></h4>
+                        <div class="pl-3">
+                
+                            <p>Djelo Binza
+                                Kinshasa
+                                République démocratique du Congo</p>
+                        </div>
+                    </div>
+                   
+                    <div class="d-flex">
+                        <h4 class="fa fa-phone-alt text-primary"></h4>
+                        <div class="pl-3"> 
+                            
+                            <p>+243897 835 177</p>
+                        </div>
+                    </div>
+                </div>
+             
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h3 class="text-white mb-4">Heures d'ouverture</h3>
+                    <div class="desc d-flex flex-column justify-content-start">
+                                <p>lun.:06:30 – 17:00</p> 
+                                <p>mar.:06:30 – 17:00</p> 
+                                <p> mer.:06:30 – 17:00</p> 
+                                <p> jeu.:	06:30 – 17:00</p> 
+                            <p> ven.:06:30 – 17:00</p> 
+                        <p> sam.:06:30 – 12:00</p> 
+                                    <p> dim.:Fermé </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h3 class="text-white mb-4">Abonnez-vous à notre boite aux lettres</h3>
+                    <div class="desc d-flex flex-column justify-content-start">
+                               <input type="text" placeholder="votre @email" class="form-control">
+                               <button class="btn btn-warning mt-2">envoyer</button>
+                    </div>
+                </div>
+        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(192, 198, 199, 0.2);;">
+            <p class="m-0 text-center text-white">
+                Tout droit reservé. Designed by Descartes Bambu
+                
+            </p>
+        </div>
+    </div>
+    </div>
+</div>
+</div>  
+</div> 
+ <!---COOKIES START-->
+
+ <div id="cookiePopup" class="hide" >
+    <h3>Ce site utilise les cookies</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas enim molestiae nisi repellendus minima, quod dolor magnam modi labore rerum deserunt. Officia deleniti officiis delectus deserunt, pariatur nisi quia quis?
+        
+    </p>
+    <button id="acceptbtn">Accepter</button>
+</div>
+
+<!----COOKIES END-->
+
+<div class="bbtn">
+    <img src="arrow-up-solid.svg" alt="" class="iconee">
+</div>
+
+</div>
+
+
+     
+<!--<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>-->
+  <script src="css/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="js/login.js"></script>
+     <script src="css/jquery/jquery.min.js"></script>
+    <script src="css/js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lightbox-plus-jquery.min.js"></script>
+
+  <!--
+    <link rel="stylesheet" href="bootstrap/js/bootstrap.bundle.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+   --->
 </body>
 </html>

@@ -1,0 +1,29 @@
+
+
+ .gallery img{
+    width:230px;
+    padding: 5px;
+    margin-left: 25px;
+   /*filter: grayscale(100%);*/
+ 
+   
+}
+.gallery img{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+/*
+ .gallery img:hover{
+    filter: grayscale(0);
+}
+*/
+@media screen and (max-width: 574px) {
+    .gallery img{
+        width:25rem;
+        padding: 5px;
+         display: block;
+         flex-direction: column ;
+       /*filter: grayscale(100%);*/
+    }
+}
