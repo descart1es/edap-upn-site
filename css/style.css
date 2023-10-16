@@ -536,7 +536,7 @@ h1{
        display: none;
        text-align: center;
        padding: 0;
-       margin-left: 10px;
+       margin-left: 0;
    
     }
     header nav .nav-list .list a{
