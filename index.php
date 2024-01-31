@@ -1,5 +1,73 @@
+<?php
+
+session_start();
+   require_once('includes/db.php');
+   require_once('includes/function.php');
+   //require_once('logout.php');
+
+   //is_connected();
+  reconnect_auto();
+
+ 
+
+if(!empty($_POST)){
+    $errors=[];
+  
+    if(empty($_POST['pseudo'])){
+       
+        echo $errors['message'] = "<script>alert (\'Veillez remplir correctement votre nom')</script>";
+        //var_dump($errors['pseudo']);
+        //
+        //
+        //var_dump($errors['email'], $errors['telephone'], $errors['message']);
+    }
+    if(empty($_POST['email']) || !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
+        
+        echo $errors['message'] = "<script>alert (\'Votre email n\'est pas  valide')</script>";
+       // var_dump($errors['email']);      
+    //]);
+       
+    }
+    if(empty($_POST['message'])){
+        echo $errors['message'] = "<script>alert (\'ecriver votre message')</script>";
+        //var_dump($errors['message']);
+        
+    }
+
+    if(empty($errors)){
+        $query= ('INSERT INTO `message`(pseudo,email,message) values(?,?,?)');
+        $req= $db->prepare($query);
+        $req->execute([$_POST['pseudo'],$_POST['email'],$_POST['message']]);
+         
+       
+        $to = $_POST['email'];
+        $from = 'admin@wampserver.invalid';
+        $subject = 'Vous avez un nouveau message';
+        $message ="<html><body>";
+        $message .= "<h1> Bonjour Monsieur<h1>";
+        $message .= $_POST['message'];
+        $message="</body></html>";
+        $headers= "Content-type; text/html; charset='UTF-8'\r\n";
+        
+
+      if(mail($to,$from,$message,$headers)){
+        $_SESSION['flash']['success'] = "Votre message a été envoyé";
+      }else{
+        echo  "<script>alert (' votre message n\'a pas été envoyé')</script>";
+      }
+    }
+    
+ 
+}
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,37 +79,33 @@
     <meta property="og:image" content="image/logo.png"/>
    
 
-
+    <link href="image/edapLogo.jpeg" rel="icon">
+    
     
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/vendor/swiper/swiper-bundle.min.css">
-   <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />-->
-    <!--<link rel="stylesheet" href="css/vendor/font-awesome/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="css/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" href="font-awesome/css/all.css">
-    <link rel="stylesheet" href="font-awesome/svgs/solid">
-    
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="css/lightbox.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 
+   
 
     
     
     
 
-    <!--<link rel="stylesheet" href="font-awesome/fonts/bootstrap-icons.woff2">-->
-    <title>Mon site edap</title>
+   
+    <title>edap_upn</title>
 </head>
 <body>
     
-     <header>
+<header>
          <div class="container">
             <div class="row">
-                <!--<div class="icon" id="navToggle">
-               <div class="navIcon" id="hamburger"> <i class=" fa fa-bars fa-2x" ></i></div>
-                <div  class="navIcon hidden"><i  class="fa fa-times fa-2x" aria-hidden="true" ></i></div>
-                </div>-->
+                
                 <div class="col-md-3 col-xs-12">
                     <div class="logo"><img src="image/logo.jpg" alt=""></div>
                 </div> 
@@ -55,13 +119,14 @@
                             <li class="list"><a href="#option">Sections</a></li>
                             <li class="list"><a href="#gallery">Gallery</a></li>
                             <li class="list"><a href="#contact">contact</a></li>
-                            
-                            <a href="login.html"><button class="btn-register" style="position: left;"> <i class="fas fa-user" id="login-btn"></i>login</button></a>
+                            <?php if(isset($_SESSION['auth'])): ?>
+                                <li class="list"><a href="#contact">News</a></li>
+                                <a href="logout.php"><button class="btn-register" style="position: left;">Déconnexion</button></a>
+                            <?php else: ?>
+                            <a href="login.php"><button class="btn-register" style="position: left; background:  #067717; "> connexion</button></a>
                         </ul>
-                        
-    
-                            <button  id="btn-register"  data-bs-toggle="modal" data-bs-target="#modaladd"></i>s'inscrire</button>
-                       
+                            <a href="formulaire.php"><button  id="btn-register">s'inscrire</button></a>
+                         <?php endif; ?>
                        <!--<a href="register.html"><button style="position: left;" id="btn-register">s'inscrire</button></a>-->
                     </div>
                     
@@ -83,84 +148,7 @@
      </header>
      <!---end of header-->
 
-    <!--- DEBUT MODAL-->
-    
-    <div class="modal fade" id="modaladd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Inscrivez-vous à l'edap pour avoir une bonne éducation</h1><br>
-                    
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="api/create.php" method="POST">
-                        <div class="mb-3">
-                            <label for="name" class="col-form-label">Nom </label>
-                            <input type="text" class="form-control" name="name" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="col-form-label">Post-nom</label>
-                            <input type="email" class="form-control" name="email" id="email"/>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="col-form-label">Prenom</label>
-                            <input type="email" class="form-control" name="email" id="email"/>
-                        </div>
-                        <label for="email" class="col-form-label">sexe</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="homme" value="Homme">
-                            <label class="form-check-label" for="homme">
-                                Homme
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="femme" value="Femme">
-                            <label class="form-check-label" for="femme">
-                                Femme
-                            </label>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="col-form-label">classe</label>
-                            <input type="email" class="form-control" name="email" id="email"/>
-                        </div>
-                        <div class="mb-3">
-                            <label for="country" class="col-form-label">Section/Option</label>
-                            <select class="form-control" id="country" name="country">
-                                <option>choisir la section</option>
-                                <option value="">Primaire</option>
-                                <option value="">Commercial</option>
-                                <option value="">Hotellerie</option>
-                                <option value="">Scientifique</option>
-                                <option value="">Electricité</option>
-                                <option value="">Litteraire</option>
-                                <option value="">Nutrition</option>
-                                
-                            </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="col-form-label">Telephone</label>
-                                <input type="email" class="form-control" name="email" id="email"/>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="col-form-label">email</label>
-                                <input type="email" class="form-control" name="email" id="email"/>
-                            </div>
-                       
-                        
 
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-primary">s'inscrire</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
@@ -170,12 +158,12 @@
         <div class="overlay">
             <div class="container">
              <div class="home-content">
-                <h3 class="home-title">Bienvenu(e)s à l'Edap</h3>
+                <h1 class="home-title">Ecole d'Application de l'Upn</h1>
                 <p class="home-desc">
-                   Ce site vise à donner les Informations et de communiquer de manière permanente aux élèves de cette école, mais aussi il donne la possibilité à tout ceux qui veulent s'inscrire à distance à l'école d'application de l'UPN de reserver leurs place à moindre coup sans se deplacer. 
+                   Assurer une bonne formation pour vos enfants. 
                 </p>
-                <a href="login.html"><button class="btn button">Se connecter</button></a>
-                <a href="about.html"><button class="bttn button">Apropos</button></a>
+                <a href="formulaire.php"><button class="btn button">S'inscrire</button></a>
+                <a href="about.php"><button class="bttn button">Apropos</button></a>
              </div>
           </div> 
         </div>
@@ -188,12 +176,12 @@
               <div class="section-header text-center ">
                 <h2 class="section-title">Apropos de nous</h2>
                 <div class="line"><span></span></div>
-                <p>Decouvrez ce qui est de l'edap Upn</p>
-              </div>
+               
+              </div><br>
               <div class="row">
                 <div class="col-md-6">
                    <div class="about-info">
-                     <h3>Breve Historique de <span> l'édap</span> Upn</h3>
+                     <!--<h3>Breve Historique de <span> l'édap</span> Upn</h3>-->
                      <div class="abut-info-desc">
                          <p>
                             L’Ecole d’Application de l’Université Pédagogique Nationale a été 
@@ -207,7 +195,7 @@
                                 route de Matadi.
 
                             </p>
-                       <a href="about.html"><button class="about-info-btn"> Lire plus</button></a>
+                       <a href="about.php"><button class="options-btn"> Lire plus</button></a>
                      </div>
                    </div>
                 </div>
@@ -222,7 +210,7 @@
      
     </section>
    <!--- Fin de la partie A propos-->
-    <section class="section options" id="option">
+    <section class="options" id="option">
         <div class="container">
               <div class="section-header text-center ">
                 <h2 class="section-title">Nos Sections</h2>
@@ -233,7 +221,9 @@
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <div class="serv">
-                        
+                        <div class="iconb">
+                        <i class="icon ion-ios-cart fa-lg"></i>
+                    </div>
                         <h3 class="serv-title">Commercial</h3>
                         <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
                     </div>
@@ -241,7 +231,7 @@
 
                 <div class="col-md-4 col-xs-12">
                     <div class="serv">
-                        
+                        <div class="iconb"><i class="icon ion-earth fa-lg"></i></div>
                         <h3 class="serv-title">Hotellerie</h3>
                         <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
                     </div>
@@ -249,7 +239,7 @@
 
                 <div class="col-md-4 col-xs-12">
                     <div class="serv">
-                       
+                       <div class="iconb"><i class="ion-ios-nutrition fa-lg"></i></div> 
                         <h3 class="serv-title">Nutrition</h3>
                         <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
                     </div>
@@ -261,7 +251,7 @@
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <div class="serv">
-                       
+                    <div class="iconb"><i class="icon ion-university fa-lg"></i></div>
                         <h3 class="serv-title">Scientifique</h3>
                         <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
                     </div>
@@ -269,7 +259,7 @@
 
                 <div class="col-md-4 col-xs-12">
                     <div class="serv">
-                    
+                        <div class="iconb"><i class="icon ion-ios-book fa-lg"></i></div>
                         <h3 class="serv-title">Litteraire</h3>
                         <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
                     </div>
@@ -277,7 +267,7 @@
 
                 <div class="col-md-4 col-xs-12">
                     <div class="serv">
-                        
+                        <div class="iconb"><i class="icon ion-ios-lightbulb"></i></div>
                         <h3 class="serv-title">Electricité Génerale</h3>
                         <p class="serv-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam enim voluptate  . </p>
                     </div>
@@ -285,7 +275,7 @@
 
 
             </div>
-            <a href="sect.html"><button class="options-btn"> Lire plus</button></a>
+            <a href="sect.php"><button class="options-btn"> Lire plus</button></a>
         </div>
         
     </section>
@@ -293,7 +283,7 @@
      
   <!--- Fin de la partie sections/Options-->
 
- --
+
 
 
 
@@ -410,136 +400,38 @@
                 <div class="line"><span></span></div>
                 <p>En cas de préoccupation concernant l'edap, veuillez nous contacter qu'on vous reponde immediatement</p>
               </div>
-
+              
             <div class="message row m-0-auto">
-                
+                  
                 <div class="contact col-md-6">
-                    <h5 class="m-0-auto"> Message</h5>
-                    <form>
+                
+                <?php  require_once('includes/errors.php'); ?>     
+                     
+                   
+                    <form action="" method="post">
                         <div class="form-group mt-20">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre nom">
+                            <input type="text" class="form-control" name="pseudo" aria-describedby="emailHelp" placeholder="Votre nom" required>
                         </div>
                         <div class="form-group mt-20">
-                            <input type="tel" class="form-control" name="phone" placeholder="Telephone">
+                            <input type="email" class="form-control" name="email" placeholder="email" required>
                         </div>
                         
                         <div class="form-group mt-20">
                             <!--<input name="" id="" cols="30" rows="10" class="text form-control" placeholder="" >-->
-                            <textarea class="text form-control"  name="" id="" cols="30" rows="10" placeholder="votre message"></textarea>
+                            <textarea class="text form-control"  name="message" id="" cols="30" rows="10" placeholder="votre message"></textarea>
                         </div>
-                        <button type="submit" class=" btn-block">Envoyer</button>
+                        <button type="submit" class=" btn-block" name="envoyer">Envoyer</button>
                         
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     </section>
 
 
-    <div > 
-        <div  id="footer" class=" footer  container-fluid  text-white mt-5 py-5 px-sm-3 px-md-5">
-            
-            <div class="container">
-            <div class="row pt-5 ">
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0" style="font-size: 40px; line-height: 40px;">
-                        <i class="flaticon-043-teddy-bear"></i>
-                        <h3>Edap Upn</h3>
-                    </a><br>
-                    <p>Edap est l'ecole d'application de l'Université Pédagogique Nationale qui donne une formation de qualité à nos enfants.</p>
-                    <div class="d-flex justify-content-start mt-4">
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <h3>Notre adresse</h3><br>
-                    <div class="d-flex">
-                        <h4 class="fa fa-map-marker-alt text-primary"></h4>
-                        <div class="pl-3">
-                
-                            <p>Djelo Binza
-                                Kinshasa
-                                République démocratique du Congo</p>
-                        </div>
-                    </div>
-                   
-                    <div class="d-flex">
-                        <h4 class="fa fa-phone-alt text-primary"></h4>
-                        <div class="pl-3"> 
-                            
-                            <p>+243897 835 177</p>
-                        </div>
-                    </div>
-                </div>
-             
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <h3 class="text-white mb-4">Heures d'ouverture</h3>
-                    <div class="desc d-flex flex-column justify-content-start">
-                                <p>lun.:06:30 – 17:00</p> 
-                                <p>mar.:06:30 – 17:00</p> 
-                                <p> mer.:06:30 – 17:00</p> 
-                                <p> jeu.:	06:30 – 17:00</p> 
-                            <p> ven.:06:30 – 17:00</p> 
-                        <p> sam.:06:30 – 12:00</p> 
-                                    <p> dim.:Fermé </p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <h3 class="text-white mb-4">Abonnez-vous à notre boite aux lettres</h3>
-                    <div class="desc d-flex flex-column justify-content-start">
-                               <input type="text" placeholder="votre @email" class="form-control">
-                               <button class="btn btn-warning mt-2">envoyer</button>
-                    </div>
-                </div>
-        <div class="container-fluid pt-5" style="border-top: 1px solid rgba(192, 198, 199, 0.2);;">
-            <p class="m-0 text-center text-white">
-                Tout droit reservé. © Descartes Bambu 2023
-                
-            </p>
-        </div>
-    </div>
-    </div>
-</div>
-</div>  
-</div> 
- <!---COOKIES START-->
-
- <div id="cookiePopup" class="hide" >
-    <h3>Notre site utilise des cookies.</h3>
-    <p> Un cookie est un fichier contenant un identifiant (une chaîne de caractères des lettres et des chiffres) envoyé par un serveur Web à un navigateur Web et stocké par le navigateur. L’identifiant est alors renvoyé au serveur à chaque fois que le navigateur demande une page du serveur. Les cookies peuvent être soit des cookies « permanents » ou des cookies liés à une « session »
-        
-    </p>
-    <button id="acceptbtn">Accepter</button>
-</div>
-
-<!----COOKIES END-->
-  <!---
-
---->
-
-</div>
+    <?php  require_once('includes/footer.php'); ?>
 
 
-     
-<!--<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>-->
-  <script src="css/vendor/swiper/swiper-bundle.min.js"></script>
-      <script src="js/login.js"></script>
-     <script src="css/jquery/jquery.min.js"></script>
-    <script src="css/js/bootstrap.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/lightbox-plus-jquery.min.js"></script>
-
-  <!--
-    <link rel="stylesheet" href="bootstrap/js/bootstrap.bundle.min.js">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-   --->
 </body>
 </html>

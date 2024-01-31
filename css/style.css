@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
 body{
     font-family: lucida sans;
 }
@@ -60,10 +72,10 @@ header nav .nav-list .list a{
     
 }
 header nav .nav-list .list a:hover{
-    color:  #48487f;
+    color:  rgb(8, 56, 119);
 }
 #btn-register{
-    background:  #48487f;
+    background:  rgb(8, 56, 119);
     color: #fff;
     width: 100px;
     height: 60%;
@@ -75,20 +87,17 @@ header nav .nav-list .list a:hover{
     margin-left: 10px;
     
 }
- .btn-register{
-    background:  #e60417;
-    color: #fff;
-    width: 100px;
+.btn-register {
+    background: #e60417;
+    color: hsl(0, 0%, 100%);
+    width: 120px;
     height: 60%;
     border-radius: 5px;
     text-align: center;
     margin-top: 12px;
     border: none;
-    
-}
-.btn-register i{
-    padding: 10px ;
-}
+  }
+
 
 /*  ici notre section baniere landing page */
 
@@ -102,23 +111,40 @@ header nav .nav-list .list a:hover{
    
 }
 .sticky  nav .nav-list .list a{
-  color: #48487f;;
+  color: #000E38;
 }
 .service-about .btn{
-    background:  #48487f;
+    background: rgb(8, 56, 119);
     color: white;
     width: 150px;
     text-align: center;
     padding: 10px 0;
     margin-bottom: 10px;
 }
+.options .serv .iconb{
+    background: rgb(8, 56, 119);
+    height: 60px;
+    width: 60px;
+    margin: 10px auto;
+    line-height: 60px;
+    color: #fff;
+    border-radius: 50%;
+    
+      
+}
+.options .serv .iconb i{
+    color: #fff;
+   
+   
+}
 /*--------- About Us----------------------------------------------*/
 
 /*--------- About Us----------------------------------------------*/
 
 .section-title{
-    font-size: 40px;
+    font-size: 45px;
     margin-top: 20px;
+    font-weight: bold;
 }
 .line{
   background: #bdd;
@@ -130,7 +156,7 @@ header nav .nav-list .list a:hover{
   display: block;
   width: 100px;
   height: 4px;
-  background-color: #48487f;
+  background-color: rgb(8, 56, 119);
   margin: auto;
   position: relative;
   bottom: 0.5px;
@@ -163,12 +189,27 @@ header nav .nav-list .list a:hover{
 h1{
     margin: 30px 0 50px;
     text-align: center;
-    color: #48487f;
+    color: rgb(8, 56, 119);
+}
+h2{
+    color: rgb(8, 56, 119);
+    font-weight: bold;
+}
+
+.footer .fab{
+    color: whitesmoke;
+    border-color: white;
+}
+.footer .fab:hover{
+    color: none;
 }
 
 .section-gallery{
-    background-color: #4e5090;
+    background-color:rgb(8, 56, 119);
     text-align: center;
+}
+.section-gallery .line span{
+    color: red;
 }
 .section-gallery .section-title{
     color: #fff;
@@ -201,6 +242,9 @@ h1{
 .iconee{
     width: 50px;
 }
+.icc{
+    border: none;
+}
 
  /*.gallery img:hover{
     filter: grayscale(0);
@@ -218,10 +262,10 @@ h1{
    
 }
 .sticky  nav .nav-list .list a{
-  color: #48487f;;
+  color: rgb(8, 56, 119);
 }
     .section-gallery{
-        background-color:  #48487f;
+        background-color: rgb(8, 56, 119);
         display: flex;
         flex-direction: row;
         text-align: center;
@@ -267,7 +311,7 @@ h1{
     
     }
     header  nav .nav-list .list a{
-        color:  #6e67a0;
+        color: rgb(8, 56, 119);
      
       }
     .section-gallery{
@@ -285,22 +329,8 @@ h1{
      
        
     }
-    .form-group .form-control{
-        border-radius: 5px;
-        padding: 10px;
-        
     
-    }
-    .message h5 {
-        text-align: center;
-        font-size: 2rem;
-        color: #888;
-        margin-top: 5px;
-    }
-    .contact{
-        background-color: #6e67a0;
-        width: 60%;
-    }
+
 }
 
 @media (max-width: 990px){
@@ -318,22 +348,8 @@ h1{
         background-color: #0c0c0c;
     
     }
-    .form-group .form-control{
-        border-radius: 5px;
-        padding: 10px;
-        
     
-    }
-    .message h5 {
-        text-align: center;
-        font-size: 2rem;
-        color: #888;
-        margin-top: 5px;
-    }
-    .contact{
-        background-color: #6e67a0;
-        width: 220%;
-    }
+ 
 }
 @media(max-width: 835px){
     header{
@@ -371,7 +387,7 @@ h1{
     
     }
     header  nav .nav-list .list a{
-        color:  #6e67a0;
+        color:  rgb(8, 56, 119);
      
       }
       header  nav .nav-list .list a:hover{
@@ -396,7 +412,7 @@ h1{
        
     }
     .sticky  nav .nav-list .list a{
-      color: #48487f;;
+      color: rgb(8, 56, 119);
     }
         .hamburger{
             display: block;
@@ -449,22 +465,9 @@ h1{
        
     }
 
-    .form-group .form-control{
-        border-radius: 5px;
-        padding: 10px;
-        
     
-    }
-    .message h5 {
-        text-align: center;
-        font-size: 1rem;
-        color: #888;
-        margin-top: 5px;
-    }
-    .contact{
-        background-color: #6e67a0;
-        width: 220%;
-    }
+  
+   
 }
 
 
@@ -483,16 +486,17 @@ h1{
 }
 .section-home .home-title{
      color: #fff;
-     font-size: 45px;
+     font-size: 3rem;
      margin-bottom: 20px;
-     text-transform: capitalize;
+     font-weight: bold;
+
 }
 .section-home .home-desc{
     color: #fff;
     font-size: 19px;
 }
 .section-home .btn{
-    background:  #48487f;
+    background:  rgb(8, 56, 119);
     color: white;
     width: 150px;
     text-align: center;
@@ -510,7 +514,7 @@ h1{
     border-radius: 5px;
 }
 .section-home .bttn:hover{
-    background: #48487f;
+    background:rgb(8, 56, 119);
     transition: all 0.3s ease;
 }
 
@@ -544,7 +548,7 @@ h1{
     }
     
 
-    
+
     
 
 
@@ -577,11 +581,10 @@ h1{
     }
     
     .gallery img{
-        width:90%;
+        width:100px;
         padding: 5px;
-       
-       filter: grayscale(100%);
-     
+        
+        
        
     }
     .footer .foot-adress{
@@ -605,7 +608,7 @@ h1{
 
 }
 .about .about-info h3 span{
-     color:  #48487f;
+     color:  rgb(8, 56, 119);
 }
 .about .about-info  .about-info-desc{
       line-height: 1.8px;
@@ -614,7 +617,7 @@ h1{
       
 }
 .about .about-info .about-info-btn{
-    background-color:  #48487f;
+    background-color: rgb(8, 56, 119);
     padding: 10px 20px;
     border: 0;
     color: #fff;
@@ -632,7 +635,7 @@ h1{
    
 }
 .options .serv:hover{
-    color: #48487f;
+    color: rgb(8, 56, 119);
    
 }
 
@@ -646,22 +649,15 @@ h1{
 	transition: 1s ease;
 }
 
-.options .serv .icon{
-      background:  #48487f;
-      height: 60px;
-      width: 60px;
-      text-align: center;
-      line-height: 60px;
-      color: #fff;
-      border-radius: 50%;
-}
+
 .options-btn{
-    background-color: #48487f;
+    background-color: rgb(8, 56, 119);
     padding: 10px 20px;
     border: 0;
     color: #fff;
     font-weight: bold;
     margin-bottom: 5px;
+    border-radius: 5px;
 }
 .options .serv-title{
     font-weight: bold;
@@ -745,15 +741,27 @@ h1{
 }
 .contact {
     margin: 40px auto;
-    background-color: #f4f1fa;
+   
     text-align: center;
     font-size: 1rem;
     color: #8f8c8c;
     padding: 10px;
-    border-radius: 15px;
+  
     margin-top: 5px;
 
 
+}
+.form-group input,textarea{
+     border-radius: 20px;
+     height: 65px;
+     box-shadow: 0 1rem 2rem rgba(38, 38, 38, 0.1);
+  
+    
+     
+}
+.form-group textarea{
+    border-radius: 20px 20px 20px 20px;
+   
 }
 .btn-block{
     width: 100%;
@@ -765,7 +773,7 @@ h1{
 /*****----FOOTER/ BAS DE PAGE------****/
 
 #footer{
-    background-color:#48487f;
+    background-color: rgb(8, 56, 119);
 }
 #footer .foot-adress{
     display:flex;
@@ -792,7 +800,7 @@ h1{
     color: #b9b7b7;
 }
 .btn-block{
-    background-color: #48487f;
+    background-color:rgb(8, 56, 119);
     color: #fff;
     width: 97%;
     height: 40px;
@@ -800,6 +808,16 @@ h1{
     border-radius: 5px;
 
 }
+.btn-warniing{
+    background-color: #000E38;
+    margin-top: 5px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+
+}
+
 
 .modal-header .loger img{
      font-size: 45px;
@@ -834,7 +852,7 @@ h1{
     font-size: 1.5rem;
 }
 #cookiePopup button{
-    background-color: #48487f;
+    background-color:rgb(8, 56, 119);
     border: none;
     color: #ffffff;
     font-size: 1.2em;
@@ -846,7 +864,7 @@ h1{
     cursor: pointer;
 }
 #cookiePopup a{
-    color: #0f0676;
+    color: #000E38;
 
 }
 .hide{
@@ -877,6 +895,7 @@ h1{
     }
 }
 
+/*** ICI LE STYLE DE NOTRE FORMULAIRE****/
 
 
 

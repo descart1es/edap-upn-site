@@ -22,7 +22,13 @@ const hamburger= document.querySelector('.hamburger');
 hamburger.addEventListener('click', ()=>{
     hamburger.classList.toggle('active')
 })
+const openButton = document.querySelector('.nav-list');
+const listt = document.querySelector('.list');
 
+
+listt.addEventListener('click', () =>{
+   openButton.classList.remove('nav-list')
+});
 
 
 
@@ -52,24 +58,14 @@ const swiper = new Swiper('.review-slider', {
 });
 /**  Bouton  */
 
-const btbn = document.querySelector(".bbtn");
-btbn.addEventListener('click', () =>  {
-       window.scrollTo(0, 1000)
-          /* top: 0,
-           left: 0,
-           behavior: "smooth" 
-            */
-       
 
-})
 
 
 /******* Place aux cookies */
 
-
 let popUp = document.getElementById("cookiePopup");
 //Quand l'utilisateur click le bouton accepter
-document.getElementById('acceptbtn').addEventListener("click", () =>{
+document.getElementById('acceptcookie').addEventListener("click", () =>{
 // Ici on crée l'objet
 let d = new Date();
 d.setMinutes( 2 +  d.getMinutes());

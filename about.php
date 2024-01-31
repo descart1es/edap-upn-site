@@ -121,8 +121,9 @@
 
 
 
+    
     <div > 
-        <div  id="footer" class="container-fluid  text-white mt-5 py-5 px-sm-3 px-md-5">
+        <div  id="footer" class=" footer  container-fluid  text-white mt-5 py-5 px-sm-3 px-md-5">
             
             <div class="container">
             <div class="row pt-5 ">
@@ -133,20 +134,20 @@
                     </a><br>
                     <p>Edap est l'ecole d'application de l'Université Pédagogique Nationale qui donne une formation de qualité à nos enfants.</p>
                     <div class="d-flex justify-content-start mt-4">
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                            style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="icc btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;background-color: #263052;" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="icc btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;background-color: #263052; " href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="icc btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;background-color: #263052;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="icc btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+                            style="width: 38px; height: 38px;background-color: #263052;" href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
                     <h3>Notre adresse</h3><br>
                     <div class="d-flex">
-                        <h4 class="fa fa-map-marker-alt text-primary"></h4>
+                        
                         <div class="pl-3">
                 
                             <p>Djelo Binza
@@ -156,7 +157,7 @@
                     </div>
                    
                     <div class="d-flex">
-                        <h4 class="fa fa-phone-alt text-primary"></h4>
+                        
                         <div class="pl-3"> 
                             
                             <p>+243897 835 177</p>
@@ -180,12 +181,12 @@
                     <h3 class="text-white mb-4">Abonnez-vous à notre boite aux lettres</h3>
                     <div class="desc d-flex flex-column justify-content-start">
                                <input type="text" placeholder="votre @email" class="form-control">
-                               <button class="btn btn-warning mt-2">envoyer</button>
+                               <button class=" btn-warniing " >envoyer</button>
                     </div>
                 </div>
         <div class="container-fluid pt-5" style="border-top: 1px solid rgba(192, 198, 199, 0.2);;">
             <p class="m-0 text-center text-white">
-                Tout droit reservé. Designed by Descartes Bambu
+                Tout droit reservé. © Descartes Bambu 2023
                 
             </p>
         </div>
@@ -194,8 +195,9 @@
 </div>
 </div>  
 </div> 
-</div>
+ 
 
+</div>
     <script src="css/jquery/jquery.min.js"></script>
     <script src="css/js/bootstrap.js"></script>
     <script src="js/main.js"></script>
